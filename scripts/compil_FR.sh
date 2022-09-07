@@ -15,7 +15,19 @@ then
         exit 1;
 else
         printf "$CSC Lancement du script... \n"
-fichier
+fi
+
+# Check if a proxy is defined
+if [ ${HTTP_PROXY} ]
+then
+    echo "Acquire::http::Proxy \"http://${HTTP_PROXY}\";" >> /etc/apt/apt.conf.d/00proxy
+fi
+
+if [ ${HTTPS_PROXY} ]
+then
+    echo "Acquire::https::Proxy \"https://${HTTPS_PROXY}\";" >> /etc/apt/apt.conf.d/00proxy
+fi
+
 # Update package list and packages
 apt-get update && apt-get -y upgrade
 
