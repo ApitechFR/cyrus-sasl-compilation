@@ -1,0 +1,7 @@
+# Ignore all output files
+output/**
+
+# Keep output folders
+# => "It is not possible to re-include a file if a parent directory of that file is excluded"
+# !output/debian/buster/.gitkeep
+# !output/debian/stretch/.gitkeep
