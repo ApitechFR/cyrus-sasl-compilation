@@ -9,14 +9,13 @@ NC='\033[0m' # No color
 CSC="[${LC}cyrus-sasl-compilation${NC}]"
 
 # Check if environment variables are defined
-if [ -z ${DEB_PREFIX} ] || [ -z ${DEB_EMAIL} ] || [ -z ${DEB_NAME} ];
+if [[ -z ${DEB_PREFIX} ]] || [[ -z ${DEB_EMAIL} ]] || [[ -z ${DEB_NAME} ]]
 then
         printf "$CSC Impossible de lancer le script ! Les variables d'environnement DEB_PREFIX, DEB_EMAIL et DEB_NAME sont requises. \n"
         exit 1;
 else
         printf "$CSC Lancement du script... \n"
-fi
-
+fichier
 # Update package list and packages
 apt-get update && apt-get -y upgrade
 
@@ -45,7 +44,7 @@ printf "$CSC Dernière version : $(cat ${LATEST_VERSION_FILE}) \n"
 
 if [[ $(cat ${CURRENT_VERSION_FILE}) = $(cat ${LATEST_VERSION_FILE}) ]]; then
         printf "$CSC Pas de nouvelle version du paquet sasl2-bin ! \n"
-        printf "$CSC Pour forcer la recompilation, supprimez le fichier 'output/debianX/version'. \n"
+        printf "$CSC Pour forcer la recompilation, supprimez le fichier 'output/debian/X/version'. \n"
 else
         printf "$CSC Nouvelle version du paquet sasl2-bin trouvée ! \n"
         printf "$CSC Lancement de la recompilation... \n"
